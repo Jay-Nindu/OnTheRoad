@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#define MAX_N 1005
+#define MAX_N INT_MAX/2
 using namespace std;
 
 int main(){
@@ -16,6 +16,7 @@ int main(){
   for(int i = 0; i < edgeAmount; i++){
     cin >> currentNode >> otherNode >> currentWeight;
     adjacencyList[currentNode].push_back(make_pair(currentWeight, otherNode));
+    adjacencyList[otherNode].push_back(make_pair(currentWeight, currentNode));
   }
 
   vector<int> stalls(stallAmount);
@@ -53,7 +54,6 @@ int main(){
       for(pair<int, int> i : adjacencyList[currentNode]){
         if(newDist[i.second] > i.first + DistS){
           q.push(make_pair( -1*(i.first + DistS), i.second));
-          cout << i.first;
         }
       }
     }
